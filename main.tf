@@ -36,9 +36,13 @@ resource "google_compute_instance" "instance-1-a-1" {
   machine_type = "f1-micro"
   zone         = "europe-west1-b"
   tags = ["instance-1-a-1"]
-  disk {
-    image = "centos-cloud/centos-7"
+
+  boot_disk {
+    initialize_params{
+      image = "centos-cloud/centos-7"
+    }
   }
+
   network_interface {
     subnetwork = "${google_compute_subnetwork.subnet-1-a.name}"
   //  access_config = "${google_compute_address.default.name}"
@@ -50,8 +54,11 @@ resource "google_compute_instance" "instance-1-b-1" {
   machine_type = "f1-micro"
   zone         = "europe-west1-b"
   tags = ["instance-1-b-1"]
-  disk {
-    image = "centos-cloud/centos-7"
+
+  boot_disk {
+    initialize_params{
+      image = "centos-cloud/centos-7"
+    }
   }
   network_interface {
     subnetwork = "${google_compute_subnetwork.subnet-1-b.name}"
